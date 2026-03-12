@@ -31,4 +31,16 @@ export class ProjectListComponent {
     return this.projects.filter(project => project.status === 'Terminé');
   }
 
+  moveToInProgress(project: Project): void {
+    this.projectService.updateProjectStatus(project.id, 'En cours');
+  }
+
+  moveToDone(project: Project): void {
+    this.projectService.updateProjectStatus(project.id, 'Terminé');
+  }
+
+  moveToTodo(project: Project): void {
+    this.projectService.updateProjectStatus(project.id, 'À faire');
+  }
+
 }

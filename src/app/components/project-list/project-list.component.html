@@ -12,6 +12,12 @@
         <a [routerLink]="['/projects', project.id]">
           Voir détail
         </a>
+
+        <div class="card-actions">
+          <button class="action-button next-button" (click)="moveToInProgress(project)">
+            → Commencer le projet
+          </button>
+        </div>
       </div>
     }
 
@@ -30,6 +36,16 @@
         <a [routerLink]="['/projects', project.id]">
           Voir détail
         </a>
+
+        <div class="card-actions">
+          <button class="action-button back-button" (click)="moveToTodo(project)">
+            ← Revenir à "À faire"
+          </button>
+
+          <button class="action-button next-button" (click)="moveToDone(project)">
+            → Terminer le projet
+          </button>
+        </div>
       </div>
     }
 
@@ -48,6 +64,12 @@
         <a [routerLink]="['/projects', project.id]">
           Voir détail
         </a>
+
+        <div class="card-actions">
+          <button class="action-button back-button" (click)="moveToInProgress(project)">
+            ← Revenir à "En cours"
+          </button>
+        </div>
       </div>
     }
 

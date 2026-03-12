@@ -52,6 +52,15 @@ export class ProjectService {
     this.saveProjects();
   }
 
+  updateProjectStatus(id: number, status: Project['status']): void {
+    const project = this.projects.find(project => project.id === id);
+
+    if (project) {
+      project.status = status;
+      this.saveProjects();
+    }
+  }
+
   private saveProjects(): void {
     localStorage.setItem(this.storageKey, JSON.stringify(this.projects));
   }
