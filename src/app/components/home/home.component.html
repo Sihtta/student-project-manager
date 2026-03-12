@@ -1,7 +1,36 @@
-<h1>Dashboard</h1>
+<div class="home-page">
 
-<p>{{ totalProjects }} projets</p>
-<p>{{ completedProjects }} projets terminés</p>
-<p>{{ urgentProjects }} projets urgents</p>
+  <section class="hero">
+    <h1>Student Project Manager</h1>
+    <p class="subtitle">
+      Organisez vos projets universitaires, suivez vos priorités et gardez une vue claire sur vos objectifs.
+    </p>
+  </section>
 
-<a routerLink="/projects">Voir tous les projets</a>
+  <section class="message-card">
+    <h2>Message du jour</h2>
+    <p>{{ dynamicMessage }}</p>
+  </section>
+
+  <section class="tip-card">
+    <h2>Conseil du jour</h2>
+    <p>{{ currentTip }}</p>
+  </section>
+
+  <section class="next-project-card">
+    <h2>Prochain objectif</h2>
+
+    @if (nextProject) {
+      <h3>{{ nextProject.title }}</h3>
+      <p><strong>Date limite :</strong> {{ nextProject.deadline }}</p>
+
+      <a [routerLink]="['/projects', nextProject.id]">
+        Voir le projet
+      </a>
+    }
+
+    @if (!nextProject) {
+      <p>Aucun projet en cours pour le moment.</p>
+    }
+  </section>
+</div>
