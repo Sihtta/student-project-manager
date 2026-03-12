@@ -1,1 +1,49 @@
-<p>stats works!</p>
+<h2>Statistiques des projets</h2>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <h3>Total</h3>
+    <p>{{ totalProjects }}</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>À faire</h3>
+    <p>{{ todoProjects }}</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>En cours</h3>
+    <p>{{ inProgressProjects }}</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Terminés</h3>
+    <p>{{ doneProjects }}</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Urgents</h3>
+    <p>{{ urgentProjectsCount }}</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Taux d'avancement</h3>
+    <p>{{ completionRate }}%</p>
+  </div>
+</div>
+
+<h3>Projets urgents</h3>
+<p>Projets avec moins d'une semaine restante :</p>
+<div class="urgent-list">
+  @for (project of projects | urgentProject; track project.id) {
+    <div class="urgent-card" [appPriorityColor]="project.priority">
+      <h4>{{ project.title }}</h4>
+      <p><strong>Matière :</strong> {{ project.subject }}</p>
+      <p><strong>Date limite :</strong> {{ project.deadline }}</p>
+      <p><strong>Statut :</strong> {{ project.status }}</p>
+      <p><strong>Priorité :</strong> {{ project.priority }}</p>
+    </div>
+  } @empty {
+    <p>Aucun projet urgent.</p>
+  }
+</div>

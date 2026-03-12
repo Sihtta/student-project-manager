@@ -10,7 +10,9 @@ import {
 } from '@angular/forms';
 import { Observable, startWith, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { PriorityColorDirective } from '../../directives/priority-color.directive';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-add-project',
@@ -23,7 +25,11 @@ export class AddProjectComponent implements OnInit {
   projectForm!: FormGroup;
   previewProject$!: Observable<any>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private projectService: ProjectService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.projectForm = this.fb.group({
@@ -73,7 +79,17 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      console.log(this.projectForm.value);
+      this.projectService.addProject(this.projectForm.value);
+      this.projectForm.reset({
+        title: '',
+        subject: '',
+        description: '',
+        deadline: '',
+        status: 'À faire',
+        priority: 'Moyenne'
+      });
+
+      this.router.navigate(['/projects']);
     } else {
       this.projectForm.markAllAsTouched();
     }
