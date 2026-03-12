@@ -15,5 +15,7 @@ export const routes: Routes = [
 
   { path: 'addProjects', component: AddProjectComponent },
 
-  { path: 'stats', component: StatsComponent }
+  { path: 'stats', component: StatsComponent },
+
+  { path: 'projects/edit/:id', component: AddProjectComponent }
 ];

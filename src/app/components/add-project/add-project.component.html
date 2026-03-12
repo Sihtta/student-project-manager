@@ -1,133 +1,137 @@
 <div class="container">
   <div class="form-section">
-    <h2>Ajouter un projet</h2>
+    <div class="form-card">
+      <h2>Ajouter un projet</h2>
 
-    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-      <label for="title">Titre <span class="required">*</span></label>
-      <input id="title" type="text" formControlName="title">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <label for="title">Titre <span class="required">*</span></label>
+        <input id="title" type="text" formControlName="title">
 
-      <div class="error-slot">
-        @if (title?.invalid && title?.touched) {
-          <p class="error-message">
-            @if (title?.errors?.['required']) {
-              Le titre est obligatoire.
-            }
-            @if (title?.errors?.['minlength']) {
-              Le titre doit contenir au moins 3 caractères.
-            }
-            @if (title?.errors?.['maxlength']) {
-              Le titre ne doit pas dépasser 50 caractères.
-            }
-          </p>
-        }
-      </div>
+        <div class="error-slot">
+          @if (title?.invalid && title?.touched) {
+            <p class="error-message">
+              @if (title?.errors?.['required']) {
+                Le titre est obligatoire.
+              }
+              @if (title?.errors?.['minlength']) {
+                Le titre doit contenir au moins 3 caractères.
+              }
+              @if (title?.errors?.['maxlength']) {
+                Le titre ne doit pas dépasser 50 caractères.
+              }
+            </p>
+          }
+        </div>
 
-      <label for="subject">Matière <span class="required">*</span></label>
-      <input id="subject" type="text" formControlName="subject">
+        <label for="subject">Matière <span class="required">*</span></label>
+        <input id="subject" type="text" formControlName="subject">
 
-      <div class="error-slot">
-        @if (subject?.invalid && subject?.touched) {
-          <p class="error-message">
-            @if (subject?.errors?.['required']) {
-              La matière est obligatoire.
-            }
-            @if (subject?.errors?.['minlength']) {
-              La matière doit contenir au moins 2 caractères.
-            }
-            @if (subject?.errors?.['maxlength']) {
-              La matière ne doit pas dépasser 30 caractères.
-            }
-          </p>
-        }
-      </div>
+        <div class="error-slot">
+          @if (subject?.invalid && subject?.touched) {
+            <p class="error-message">
+              @if (subject?.errors?.['required']) {
+                La matière est obligatoire.
+              }
+              @if (subject?.errors?.['minlength']) {
+                La matière doit contenir au moins 2 caractères.
+              }
+              @if (subject?.errors?.['maxlength']) {
+                La matière ne doit pas dépasser 30 caractères.
+              }
+            </p>
+          }
+        </div>
 
-      <label for="description">Description</label>
-      <textarea id="description" formControlName="description"></textarea>
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
 
-      <div class="error-slot error-slot-large">
-        @if (description?.invalid && description?.touched) {
-          <p class="error-message">
-            @if (description?.errors?.['minlength']) {
-              La description doit contenir au moins 5 caractères.
-            }
-            @if (description?.errors?.['maxlength']) {
-              La description ne doit pas dépasser 200 caractères.
-            }
-          </p>
-        }
-      </div>
+        <div class="error-slot error-slot-large">
+          @if (description?.invalid && description?.touched) {
+            <p class="error-message">
+              @if (description?.errors?.['minlength']) {
+                La description doit contenir au moins 5 caractères.
+              }
+              @if (description?.errors?.['maxlength']) {
+                La description ne doit pas dépasser 200 caractères.
+              }
+            </p>
+          }
+        </div>
 
-      <label for="deadline">Date limite <span class="required">*</span></label>
-      <input id="deadline" type="date" formControlName="deadline">
+        <label for="deadline">Date limite <span class="required">*</span></label>
+        <input id="deadline" type="date" formControlName="deadline">
 
-      <div class="error-slot">
-        @if (deadline?.invalid && deadline?.touched) {
-          <p class="error-message">
-            @if (deadline?.errors?.['required']) {
-              La date limite est obligatoire.
-            }
-            @if (deadline?.errors?.['invalidDeadline']) {
-              La date limite doit être postérieure à aujourd’hui.
-            }
-          </p>
-        }
-      </div>
+        <div class="error-slot">
+          @if (deadline?.invalid && deadline?.touched) {
+            <p class="error-message">
+              @if (deadline?.errors?.['required']) {
+                La date limite est obligatoire.
+              }
+              @if (deadline?.errors?.['invalidDeadline']) {
+                La date limite doit être postérieure à aujourd’hui.
+              }
+            </p>
+          }
+        </div>
 
-      <label for="status">Statut <span class="required">*</span></label>
-      <select id="status" formControlName="status">
-        <option value="À faire">À faire</option>
-        <option value="En cours">En cours</option>
-        <option value="Terminé">Terminé</option>
-      </select>
+        <label for="status">Statut <span class="required">*</span></label>
+        <select id="status" formControlName="status">
+          <option value="À faire">À faire</option>
+          <option value="En cours">En cours</option>
+          <option value="Terminé">Terminé</option>
+        </select>
 
-      <div class="error-slot"></div>
+        <div class="error-slot"></div>
 
-      <label for="priority">Priorité <span class="required">*</span></label>
-      <select id="priority" formControlName="priority">
-        <option value="Basse">Basse</option>
-        <option value="Moyenne">Moyenne</option>
-        <option value="Haute">Haute</option>
-      </select>
+        <label for="priority">Priorité <span class="required">*</span></label>
+        <select id="priority" formControlName="priority">
+          <option value="Basse">Basse</option>
+          <option value="Moyenne">Moyenne</option>
+          <option value="Haute">Haute</option>
+        </select>
 
-      <div class="error-slot"></div>
+        <div class="error-slot"></div>
 
-      <button type="submit" [disabled]="projectForm.invalid">
-        Ajouter
-      </button>
-    </form>
+        <button type="submit" [disabled]="projectForm.invalid">
+          Ajouter
+        </button>
+      </form>
+    </div>
   </div>
 
   <div class="preview-section">
-    <h2>Aperçu du projet</h2>
+    <div class="preview-card">
+      <h2>Aperçu du projet</h2>
 
-    <div
-      class="project-card"
-      [appPriorityColor]="(previewProject$ | async)?.priority"
-    >
-      <h3>{{ (previewProject$ | async)?.title || 'Titre du projet' }}</h3>
+      <div
+        class="project-card"
+        [appPriorityColor]="(previewProject$ | async)?.priority"
+      >
+        <h3>{{ (previewProject$ | async)?.title || 'Titre du projet' }}</h3>
 
-      <p>
-        <strong>Matière :</strong>
-        {{ (previewProject$ | async)?.subject || '-' }}
-      </p>
+        <p>
+          <strong>Matière :</strong>
+          {{ (previewProject$ | async)?.subject || '-' }}
+        </p>
 
-      <p><strong>Description :</strong></p>
-      <p>{{ (previewProject$ | async)?.description || '-' }}</p>
+        <p><strong>Description :</strong></p>
+        <p>{{ (previewProject$ | async)?.description || '-' }}</p>
 
-      <p>
-        <strong>Date limite :</strong>
-        {{ (previewProject$ | async)?.deadline || '-' }}
-      </p>
+        <p>
+          <strong>Date limite :</strong>
+          {{ (previewProject$ | async)?.deadline || '-' }}
+        </p>
 
-      <p>
-        <strong>Statut :</strong>
-        {{ (previewProject$ | async)?.status || '-' }}
-      </p>
+        <p>
+          <strong>Statut :</strong>
+          {{ (previewProject$ | async)?.status || '-' }}
+        </p>
 
-      <p>
-        <strong>Priorité :</strong>
-        {{ (previewProject$ | async)?.priority || '-' }}
-      </p>
+        <p>
+          <strong>Priorité :</strong>
+          {{ (previewProject$ | async)?.priority || '-' }}
+        </p>
+      </div>
     </div>
   </div>
 </div>

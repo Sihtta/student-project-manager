@@ -43,4 +43,11 @@ export class ProjectListComponent {
     this.projectService.updateProjectStatus(project.id, 'À faire');
   }
 
+  deleteProject(id: number): void {
+    if (confirm("Supprimer ce projet ?")) {
+      this.projectService.deleteProject(id);
+      this.projects = this.projectService.getProjects();
+    }
+  }
+
 }

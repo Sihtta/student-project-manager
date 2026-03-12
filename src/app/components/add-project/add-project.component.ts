@@ -8,9 +8,10 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { Observable, startWith, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, map, startWith } from 'rxjs';
+
 import { PriorityColorDirective } from '../../directives/priority-color.directive';
 import { ProjectService } from '../../services/project.service';
 
@@ -24,9 +25,11 @@ import { ProjectService } from '../../services/project.service';
 export class AddProjectComponent implements OnInit {
   projectForm!: FormGroup;
   previewProject$!: Observable<any>;
+  projectId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private projectService: ProjectService,
     private router: Router
   ) {}
@@ -41,10 +44,27 @@ export class AddProjectComponent implements OnInit {
       priority: ['Moyenne', [Validators.required]]
     });
 
+    this.projectId = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (this.projectId) {
+      const project = this.projectService.getProjectById(this.projectId);
+
+      if (project) {
+        this.projectForm.patchValue({
+          title: project.title,
+          subject: project.subject,
+          description: project.description,
+          deadline: project.deadline,
+          status: project.status,
+          priority: project.priority
+        });
+      }
+    }
+
     this.previewProject$ = this.projectForm.valueChanges.pipe(
       startWith(this.projectForm.value),
       map(formValue => ({
-        id: 0,
+        id: this.projectId ?? 0,
         title: formValue.title,
         subject: formValue.subject,
         description: formValue.description,
@@ -79,15 +99,14 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      this.projectService.addProject(this.projectForm.value);
-      this.projectForm.reset({
-        title: '',
-        subject: '',
-        description: '',
-        deadline: '',
-        status: 'À faire',
-        priority: 'Moyenne'
-      });
+      if (this.projectId) {
+        this.projectService.updateProject({
+          id: this.projectId,
+          ...this.projectForm.value
+        });
+      } else {
+        this.projectService.addProject(this.projectForm.value);
+      }
 
       this.router.navigate(['/projects']);
     } else {

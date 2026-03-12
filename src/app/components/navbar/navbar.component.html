@@ -1,24 +1,32 @@
 <nav class="navbar">
 
-  <a routerLink="/"
-     routerLinkActive="active"
-     [routerLinkActiveOptions]="{ exact: true }">
-     Accueil
-  </a>
+  <div class="logo">
+    Student Project Manager
+  </div>
 
-  <a routerLink="/projects"
-     routerLinkActive="active">
-     Projets
-  </a>
+  <div class="nav-links">
 
-  <a routerLink="/addProjects"
-     routerLinkActive="active">
-     Ajouter
-  </a>
+    <a routerLink="/"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+       Accueil
+    </a>
 
-  <a routerLink="/stats"
-     routerLinkActive="active">
-     Stats
-  </a>
+    <a routerLink="/projects"
+       routerLinkActive="active">
+       Projets
+    </a>
+
+    <a routerLink="/addProjects"
+       routerLinkActive="active">
+       Ajouter
+    </a>
+
+    <a routerLink="/stats"
+       routerLinkActive="active">
+       Stats
+    </a>
+
+  </div>
 
 </nav>

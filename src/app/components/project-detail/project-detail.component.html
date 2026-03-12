@@ -4,6 +4,10 @@
 
   <div class="project-card" [appPriorityColor]="project.priority">
 
+    <button class="back-button" (click)="goBack()">
+      ← Retour aux projets
+    </button>
+
     <h1>{{ project.title }}</h1>
 
     <div class="info">
@@ -32,6 +36,10 @@
         <span class="label">Priorité : </span>
         {{ project.priority }}
       </span>
+
+      <button [routerLink]="['/projects/edit', project.id]" class="edit-button">
+        Modifier
+      </button>
 
     </div>
 

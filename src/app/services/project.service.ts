@@ -65,6 +65,20 @@ export class ProjectService {
     localStorage.setItem(this.storageKey, JSON.stringify(this.projects));
   }
 
+  updateProject(updatedProject: Project): void {
+    const index = this.projects.findIndex(p => p.id === updatedProject.id);
+
+    if (index !== -1) {
+      this.projects[index] = updatedProject;
+      this.saveProjects();
+    }
+  }
+
+  deleteProject(id: number): void {
+    this.projects = this.projects.filter(project => project.id !== id);
+    this.saveProjects();
+  }
+
   private loadProjects(): void {
     const storedProjects = localStorage.getItem(this.storageKey);
 
