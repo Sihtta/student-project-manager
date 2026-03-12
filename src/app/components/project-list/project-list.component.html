@@ -1,1 +1,59 @@
-<p>project-list works!</p>
+<h1>Liste des projets</h1>
+
+<div class="columns">
+
+  <section class="column">
+    <h2>À faire</h2>
+
+    @for (project of todoProjects; track project.id) {
+      <div class="project-card" [appPriorityColor]="project.priority">
+        <h3>{{ project.title }}</h3>
+
+        <a [routerLink]="['/projects', project.id]">
+          Voir détail
+        </a>
+      </div>
+    }
+
+    @if (todoProjects.length === 0) {
+      <p class="empty-message">Aucun projet</p>
+    }
+  </section>
+
+  <section class="column">
+    <h2>En cours</h2>
+
+    @for (project of inProgressProjects; track project.id) {
+      <div class="project-card" [appPriorityColor]="project.priority">
+        <h3>{{ project.title }}</h3>
+
+        <a [routerLink]="['/projects', project.id]">
+          Voir détail
+        </a>
+      </div>
+    }
+
+    @if (inProgressProjects.length === 0) {
+      <p class="empty-message">Aucun projet</p>
+    }
+  </section>
+
+  <section class="column">
+    <h2>Terminé</h2>
+
+    @for (project of doneProjects; track project.id) {
+      <div class="project-card" [appPriorityColor]="project.priority">
+        <h3>{{ project.title }}</h3>
+
+        <a [routerLink]="['/projects', project.id]">
+          Voir détail
+        </a>
+      </div>
+    }
+
+    @if (doneProjects.length === 0) {
+      <p class="empty-message">Aucun projet</p>
+    }
+  </section>
+
+</div>
