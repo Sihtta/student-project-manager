@@ -4,26 +4,34 @@
     Student Project Manager
   </div>
 
-  <div class="nav-links">
+  <button class="menu-toggle" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <div class="nav-links" [class.open]="menuOpen">
 
     <a routerLink="/"
        routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">
+       [routerLinkActiveOptions]="{ exact: true }"
+       (click)="closeMenu()">
        Accueil
     </a>
 
     <a routerLink="/projects"
-       routerLinkActive="active">
+       routerLinkActive="active"
+       (click)="closeMenu()">
        Projets
     </a>
 
     <a routerLink="/addProjects"
-       routerLinkActive="active">
+       routerLinkActive="active"
+       (click)="closeMenu()">
        Ajouter
     </a>
 
     <a routerLink="/stats"
-       routerLinkActive="active">
+       routerLinkActive="active"
+       (click)="closeMenu()">
        Stats
     </a>
 
