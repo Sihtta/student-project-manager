@@ -13,9 +13,13 @@ export const routes: Routes = [
 
   { path: 'projects/:id', component: ProjectDetailComponent },
 
-  { path: 'addProjects', component: AddProjectComponent },
+  { path: 'add-project', component: AddProjectComponent },
+
+  { path: 'addProjects', redirectTo: 'add-project', pathMatch: 'full' },
 
   { path: 'stats', component: StatsComponent },
 
-  { path: 'projects/edit/:id', component: AddProjectComponent }
+  { path: 'projects/edit/:id', component: AddProjectComponent },
+
+  { path: '**', redirectTo: '' }
 ];

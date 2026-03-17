@@ -1,7 +1,7 @@
 <div class="container">
   <div class="form-section">
     <div class="form-card">
-      <h2>Ajouter un projet</h2>
+      <h2>{{ pageTitle }}</h2>
 
       <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
         <label for="title">Titre <span class="required">*</span></label>
@@ -93,7 +93,7 @@
         <div class="error-slot"></div>
 
         <button type="submit" [disabled]="projectForm.invalid">
-          Ajouter
+          {{ submitLabel }}
         </button>
       </form>
     </div>
@@ -119,7 +119,11 @@
 
         <p>
           <strong>Date limite :</strong>
-          {{ (previewProject$ | async)?.deadline || '-' }}
+          @if ((previewProject$ | async)?.deadline) {
+            {{ (previewProject$ | async)?.deadline | date:'dd/MM/yyyy' }}
+          } @else {
+            -
+          }
         </p>
 
         <p>

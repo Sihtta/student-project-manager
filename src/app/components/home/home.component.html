@@ -22,7 +22,7 @@
 
     @if (nextProject) {
       <h3>{{ nextProject.title }}</h3>
-      <p><strong>Date limite :</strong> {{ nextProject.deadline }}</p>
+      <p><strong>Date limite :</strong> {{ nextProject.deadline | date:'dd/MM/yyyy' }}</p>
 
       <a [routerLink]="['/projects', nextProject.id]">
         Voir le projet

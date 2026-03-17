@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Project } from '../../models/project.model';
@@ -6,7 +7,7 @@ import { ProjectService } from '../../services/project.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

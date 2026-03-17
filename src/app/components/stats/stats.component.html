@@ -39,7 +39,7 @@
     <div class="urgent-card" [appPriorityColor]="project.priority">
       <h4>{{ project.title }}</h4>
       <p><strong>Matière :</strong> {{ project.subject }}</p>
-      <p><strong>Date limite :</strong> {{ project.deadline }}</p>
+      <p><strong>Date limite :</strong> {{ project.deadline | date:'dd/MM/yyyy' }}</p>
       <p><strong>Statut :</strong> {{ project.status }}</p>
       <p><strong>Priorité :</strong> {{ project.priority }}</p>
     </div>

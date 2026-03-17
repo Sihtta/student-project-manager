@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, startWith } from 'rxjs';
 
@@ -18,7 +18,7 @@ import { ProjectService } from '../../services/project.service';
 @Component({
   selector: 'app-add-project',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe, PriorityColorDirective],
+  imports: [ReactiveFormsModule, AsyncPipe, DatePipe, PriorityColorDirective],
   templateUrl: './add-project.component.html',
   styleUrl: './add-project.component.scss'
 })
@@ -128,5 +128,13 @@ export class AddProjectComponent implements OnInit {
 
   get deadline() {
     return this.projectForm.get('deadline');
+  }
+
+  get pageTitle(): string {
+    return this.projectId ? 'Modifier le projet' : 'Ajouter un projet';
+  }
+
+  get submitLabel(): string {
+    return this.projectId ? 'Enregistrer les modifications' : 'Ajouter';
   }
 }

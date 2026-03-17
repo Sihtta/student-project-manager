@@ -1,15 +1,15 @@
+import { DatePipe, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../models/project.model';
 import { PriorityColorDirective } from '../../directives/priority-color.directive';
-import { Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [PriorityColorDirective, RouterLink],
+  imports: [PriorityColorDirective, RouterLink, DatePipe],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss'
 })

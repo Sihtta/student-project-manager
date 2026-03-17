@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+
 import { Project } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
-import { PriorityColorDirective } from '../../directives/priority-color.directive';
+import { ProjectCardComponent } from '../project-card/project-card.component';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
-  imports: [RouterLink, PriorityColorDirective],
+  imports: [ProjectCardComponent],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss'
 })
 export class ProjectListComponent {
-
   projects: Project[] = [];
 
   constructor(private projectService: ProjectService) {
@@ -44,10 +43,9 @@ export class ProjectListComponent {
   }
 
   deleteProject(id: number): void {
-    if (confirm("Supprimer ce projet ?")) {
+    if (confirm('Supprimer ce projet ?')) {
       this.projectService.deleteProject(id);
       this.projects = this.projectService.getProjects();
     }
   }
-
 }

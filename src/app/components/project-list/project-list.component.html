@@ -1,28 +1,16 @@
 <h1>Liste des projets</h1>
 
 <div class="columns">
-
   <section class="column">
-    <h2>À faire</h2>
+    <h2>A faire</h2>
 
     @for (project of todoProjects; track project.id) {
-      <div class="project-card" [appPriorityColor]="project.priority">
-        <h3>{{ project.title }}</h3>
-
-        <a [routerLink]="['/projects', project.id]">
-          Voir détail
-        </a>
-
-        <div class="card-actions">
-          <button class="action-button next-button" (click)="moveToInProgress(project)">
-            → Commencer le projet
-          </button>
-
-          <button class="delete-btn" (click)="deleteProject(project.id)">
-            Supprimer
-          </button>
-        </div>
-      </div>
+      <app-project-card
+        [project]="project"
+        column="todo"
+        (moveForward)="moveToInProgress($event)"
+        (deleteRequested)="deleteProject($event)">
+      </app-project-card>
     }
 
     @if (todoProjects.length === 0) {
@@ -34,27 +22,13 @@
     <h2>En cours</h2>
 
     @for (project of inProgressProjects; track project.id) {
-      <div class="project-card" [appPriorityColor]="project.priority">
-        <h3>{{ project.title }}</h3>
-
-        <a [routerLink]="['/projects', project.id]">
-          Voir détail
-        </a>
-
-        <div class="card-actions">
-          <button class="action-button back-button" (click)="moveToTodo(project)">
-            ← Revenir à "À faire"
-          </button>
-
-          <button class="action-button next-button" (click)="moveToDone(project)">
-            → Terminer le projet
-          </button>
-
-          <button class="delete-btn" (click)="deleteProject(project.id)">
-            Supprimer
-          </button>
-        </div>
-      </div>
+      <app-project-card
+        [project]="project"
+        column="in-progress"
+        (moveBackward)="moveToTodo($event)"
+        (moveForward)="moveToDone($event)"
+        (deleteRequested)="deleteProject($event)">
+      </app-project-card>
     }
 
     @if (inProgressProjects.length === 0) {
@@ -63,31 +37,19 @@
   </section>
 
   <section class="column">
-    <h2>Terminé</h2>
+    <h2>Termine</h2>
 
     @for (project of doneProjects; track project.id) {
-      <div class="project-card" [appPriorityColor]="project.priority">
-        <h3>{{ project.title }}</h3>
-
-        <a [routerLink]="['/projects', project.id]">
-          Voir détail
-        </a>
-
-        <div class="card-actions">
-          <button class="action-button back-button" (click)="moveToInProgress(project)">
-            ← Revenir à "En cours"
-          </button>
-
-          <button class="delete-btn" (click)="deleteProject(project.id)">
-            Supprimer
-          </button>
-        </div>
-      </div>
+      <app-project-card
+        [project]="project"
+        column="done"
+        (moveBackward)="moveToInProgress($event)"
+        (deleteRequested)="deleteProject($event)">
+      </app-project-card>
     }
 
     @if (doneProjects.length === 0) {
       <p class="empty-message">Aucun projet</p>
     }
   </section>
-
 </div>

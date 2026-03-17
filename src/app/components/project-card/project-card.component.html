@@ -1,0 +1,34 @@
+<div class="project-card" [appPriorityColor]="project.priority">
+  <div class="card-header">
+    <h3>{{ project.title }}</h3>
+    <span class="priority-badge">{{ project.priority }}</span>
+  </div>
+
+  <p class="meta"><strong>Matiere :</strong> {{ project.subject }}</p>
+  <p class="meta">
+    <strong>Date limite :</strong>
+    {{ project.deadline | date:'dd/MM/yyyy' }}
+  </p>
+
+  <a [routerLink]="['/projects', project.id]">
+    Voir détail
+  </a>
+
+  <div class="card-actions">
+    @if (canMoveBackward) {
+      <button class="action-button back-button" (click)="onMoveBackward()">
+        {{ backwardLabel }}
+      </button>
+    }
+
+    @if (canMoveForward) {
+      <button class="action-button next-button" (click)="onMoveForward()">
+        {{ forwardLabel }}
+      </button>
+    }
+
+    <button class="delete-btn" (click)="onDelete()">
+      Supprimer
+    </button>
+  </div>
+</div>

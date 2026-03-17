@@ -20,93 +20,9 @@ h1 {
   font-size: 20px;
 }
 
-.project-card {
-  border: 1px solid #ddd;
-  border-left-width: 5px;
-  padding: 15px;
-  border-radius: 8px;
-  background: #ffffff;
+app-project-card {
+  display: block;
   margin-bottom: 15px;
-  transition: transform 0.2s;
-}
-
-.project-card:hover {
-  transform: scale(1.02);
-}
-
-.project-card h3 {
-  margin: 0 0 10px 0;
-  font-size: 18px;
-}
-
-.project-card a {
-  display: inline-block;
-  margin-top: 5px;
-  text-decoration: none;
-  color: #1976d2;
-}
-
-.project-card a:hover {
-  text-decoration: underline;
-}
-
-.card-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-  align-items: stretch;
-}
-
-.card-actions button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  border: none;
-  border-radius: 5px;
-  padding: 0 12px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.back-button {
-  background: #e0e0e0;
-  color: #333;
-}
-
-.back-button:hover {
-  background: #d5d5d5;
-}
-
-.next-button {
-  background: #1976d2;
-  color: white;
-}
-
-.next-button:hover {
-  background: #125ca1;
-}
-
-.delete-btn {
-  background: #d9534f;
-  color: white;
-}
-
-.delete-btn:hover {
-  background: #c9302c;
-}
-
-.priority-high {
-  border-left-color: red;
-}
-
-.priority-medium {
-  border-left-color: orange;
-}
-
-.priority-low {
-  border-left-color: green;
 }
 
 .empty-message {
