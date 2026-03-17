@@ -9,6 +9,7 @@ export class UrgentProjectPipe implements PipeTransform {
   transform(projects: Project[]): Project[] {
     const today = new Date();
 
+    // Garde les projets a echeance proche et non termines.
     return projects.filter(project => {
       const deadline = new Date(project.deadline);
       const diffTime = deadline.getTime() - today.getTime();

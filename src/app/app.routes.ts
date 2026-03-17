@@ -15,11 +15,13 @@ export const routes: Routes = [
 
   { path: 'add-project', component: AddProjectComponent },
 
+  // Garde l'ancien chemin si un lien existe encore.
   { path: 'addProjects', redirectTo: 'add-project', pathMatch: 'full' },
 
   { path: 'stats', component: StatsComponent },
 
   { path: 'projects/edit/:id', component: AddProjectComponent },
 
+  // Redirige toute URL inconnue vers l'accueil.
   { path: '**', redirectTo: '' }
 ];

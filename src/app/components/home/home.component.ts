@@ -62,18 +62,21 @@ export class HomeComponent {
   }
 
   get nextProject(): Project | undefined {
+    // Ignore les projets termines pour trouver la prochaine priorite.
     const activeProjects = this.projects.filter(project => project.status !== 'Terminé');
 
     if (activeProjects.length === 0) {
       return undefined;
     }
 
+    // Trie par date limite croissante et garde le plus proche.
     return activeProjects.sort((a, b) =>
       new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
     )[0];
   }
 
   get dynamicMessage(): string {
+    // Adapte le message selon l'etat actuel des projets.
     if (this.totalProjects === 0) {
       return 'Aucun projet n’est encore enregistré.';
     }

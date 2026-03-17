@@ -22,6 +22,7 @@ export class ProjectDetailComponent {
     private projectService: ProjectService,
     private location: Location
   ) {
+    // Lit l'id dans l'URL pour charger le bon projet.
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -30,6 +31,7 @@ export class ProjectDetailComponent {
   }
 
   goBack(): void {
+      // Revient a la page precedente.
       this.location.back();
   }
 
