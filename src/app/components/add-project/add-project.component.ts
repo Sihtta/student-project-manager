@@ -35,7 +35,7 @@ export class AddProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Structure du formulaire et regles de validation.
+    // Structure du formulaire et regles de validation
     this.projectForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       subject: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
@@ -45,14 +45,14 @@ export class AddProjectComponent implements OnInit {
       priority: ['Moyenne', [Validators.required]]
     });
 
-    // Si un id est present dans l'URL, on passe en mode edition.
+    // Si un id est present dans l'URL, on passe en mode edition
     this.projectId = Number(this.route.snapshot.paramMap.get('id'));
 
     if (this.projectId) {
       const project = this.projectService.getProjectById(this.projectId);
 
       if (project) {
-        // Pre-remplit le formulaire avec les donnees du projet.
+        // Pre-remplit le formulaire avec les donnees du projet
         this.projectForm.patchValue({
           title: project.title,
           subject: project.subject,
@@ -64,7 +64,7 @@ export class AddProjectComponent implements OnInit {
       }
     }
 
-    // Met le formulaire en observable pour l'apercu en direct.
+    // Met le formulaire en observable pour l'apercu en direct
     this.previewProject$ = this.projectForm.valueChanges.pipe(
       startWith(this.projectForm.value),
       map(formValue => ({
@@ -95,7 +95,7 @@ export class AddProjectComponent implements OnInit {
     const selectedDate = new Date(dateValue);
     const today = new Date();
 
-    // Compare uniquement le jour, pas l'heure.
+    // Compare uniquement le jour, pas l'heure
     selectedDate.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
 
@@ -104,7 +104,7 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      // Le meme formulaire sert pour l'ajout et la modification.
+      // Le meme formulaire sert pour l'ajout et la modification
       if (this.projectId) {
         this.projectService.updateProject({
           id: this.projectId,

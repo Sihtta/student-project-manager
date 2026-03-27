@@ -7,7 +7,7 @@ import { Project } from '../models/project.model';
 export class ProjectService {
   private storageKey = 'projects';
 
-  // Donnees initiales au premier lancement.
+  // Donnees initiales au premier lancement
   private projects: Project[] = [
     {
       id: 1,
@@ -30,7 +30,7 @@ export class ProjectService {
   ];
 
   constructor() {
-    // Recharge les donnees sauvegardees si elles existent.
+    // Recharge les donnees sauvegardees si elles existent
     this.loadProjects();
   }
 
@@ -44,7 +44,7 @@ export class ProjectService {
 
   addProject(projectData: Omit<Project, 'id'>): void {
     const newProject: Project = {
-      // Genere un id a partir du plus grand id existant.
+      // Genere un id a partir du plus grand id existant
       id: this.projects.length > 0
         ? Math.max(...this.projects.map(project => project.id)) + 1
         : 1,
@@ -65,7 +65,7 @@ export class ProjectService {
   }
 
   private saveProjects(): void {
-    // Sauvegarde la liste dans le navigateur.
+    // Sauvegarde la liste dans le navigateur
     localStorage.setItem(this.storageKey, JSON.stringify(this.projects));
   }
 
@@ -87,7 +87,7 @@ export class ProjectService {
     const storedProjects = localStorage.getItem(this.storageKey);
 
     if (storedProjects) {
-      // Recharge les projets deja stockes localement.
+      // Recharge les projets deja stockes localement
       this.projects = JSON.parse(storedProjects);
     } else {
       this.saveProjects();

@@ -15,12 +15,12 @@ export class ProjectListComponent {
   projects: Project[] = [];
 
   constructor(private projectService: ProjectService) {
-    // Charge la liste une fois depuis le service.
+    // Charge la liste une fois depuis le service
     this.projects = this.projectService.getProjects();
   }
 
   get todoProjects(): Project[] {
-    // Separe les projets par statut pour les colonnes.
+    // Separe les projets par statut pour les colonnes
     return this.projects.filter(project => project.status === 'À faire');
   }
 
@@ -47,7 +47,7 @@ export class ProjectListComponent {
   deleteProject(id: number): void {
     if (confirm('Supprimer ce projet ?')) {
       this.projectService.deleteProject(id);
-      // Recharge la reference apres suppression.
+      // Recharge la reference apres suppression
       this.projects = this.projectService.getProjects();
     }
   }

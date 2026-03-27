@@ -25,7 +25,7 @@ export class StatsComponent implements OnInit {
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    // Recupere les projets avant de calculer les indicateurs.
+    // Recupere les projets avant de calculer les indicateurs
     this.projects = this.projectService.getProjects();
     this.calculateStats();
   }
@@ -45,7 +45,7 @@ export class StatsComponent implements OnInit {
       project => project.status === 'Terminé'
     ).length;
 
-    // Compte les projets proches de l'echeance et non termines.
+    // Compte les projets proches de l'echeance et non termines
     this.urgentProjectsCount = this.projects.filter(project => {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -59,7 +59,7 @@ export class StatsComponent implements OnInit {
       return diffDays >= 0 && diffDays <= 7 && project.status !== 'Terminé';
     }).length;
 
-    // Calcule un pourcentage global d'avancement.
+    // Calcule un pourcentage global d'avancement
     if (this.totalProjects > 0) {
       this.completionRate = Math.round(
         (this.doneProjects / this.totalProjects) * 100
